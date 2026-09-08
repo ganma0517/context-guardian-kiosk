@@ -198,6 +198,9 @@ body{
 
 .foot-note{font-size:var(--size-label);color:var(--ink3);margin-top:28px;line-height:1.8}
 
+.op-line{margin-top:10px;padding-top:10px;border-top:1px dashed var(--b1);font-size:var(--size-label);color:var(--ink3);line-height:1.75}
+.op-line b{color:var(--ink2);font-weight:500}
+
 .diagram-wrap{margin:8px 0 32px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .diagram-wrap svg{width:100%;min-width:480px;display:block}
 
@@ -456,6 +459,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
         <div class="card-label">判斷二</div>
         <div class="card-title">要不要拆給子代理</div>
         <p>任務可以拆成獨立子單元嗎，例如每篇論文、每份逐字稿、每個模型？可以就逐一派子代理處理，要求回傳結構化格式而不是自由文字；不行就由主線直接處理，但仍然套用卸載規則。</p>
+        <p class="op-line"><b>操作</b>：派工時明講回報格式——「結論（一到兩句）／依據（檔案＋行號）／待驗證項目」，不接受自由敘述式的總結。</p>
       </div>
       <div class="card" style="border-top-color:var(--accent3)">
         <div class="card-label">判斷三</div>
@@ -492,16 +496,19 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
         <div class="card-label">卸載 · TYPE A</div>
         <div class="card-title">先寫檔案</div>
         <p>大型工具輸出一律先寫進暫存資料夾，對話裡只留檔案路徑加三到五行摘要。</p>
+        <p class="op-line"><b>操作</b>：把原始輸出另存成 <code>scratch/</code> 底下的一個檔案，對話裡貼路徑加三到五行摘要，不貼全文。</p>
       </div>
       <div class="card" style="border-top-color:var(--accent2)">
         <div class="card-label">卸載 · TYPE B</div>
         <div class="card-title">精準查閱</div>
         <p>需要回頭找內容時，用行號或關鍵字定位擷取，不整份重新讀進對話。</p>
+        <p class="op-line"><b>操作</b>：用 <code>grep</code> 或指定行號範圍讀那一段，不把整份檔案重新讀一次。</p>
       </div>
       <div class="card" style="border-top-color:var(--accent3)">
         <div class="card-label">卸載 · TYPE C</div>
         <div class="card-title">分層儲存</div>
         <p>跨工作階段的長期結論寫回設定檔；暫存資料夾只放這次工作階段用完就丟的內容。</p>
+        <p class="op-line"><b>操作</b>：階段結束前，把要留到下階段的結論寫進 <code>context.yaml</code>；暫存資料夾的內容留在原地，不主動搬進設定檔。</p>
       </div>
     </div>
   </div>
