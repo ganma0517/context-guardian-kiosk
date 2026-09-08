@@ -261,6 +261,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
   .pg-hdr{flex-wrap:wrap;gap:8px}
   .pg-no{margin-left:0}
   div[style*="grid-template-columns:200px 1fr"]{grid-template-columns:1fr !important}
+  .diagram-wrap{max-width:100% !important;margin-left:0 !important;margin-right:0 !important}
 }
 @media(max-width:480px){
   .sc-grid{grid-template-columns:1fr}
@@ -278,6 +279,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
   <button class="tab" onclick="goTo(4)">規則二</button>
   <button class="tab" onclick="goTo(5)">被動生效</button>
   <button class="tab" onclick="goTo(6)">設計啟示</button>
+  <button class="tab" onclick="goTo(7)">參考資料</button>
 </nav>
 
 <div class="slides" id="slides">
@@ -304,6 +306,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <button class="chip-btn" onclick="goTo(4)"><span class="chip-no">04</span>規則二</button>
       <button class="chip-btn" onclick="goTo(5)"><span class="chip-no">05</span>被動生效</button>
       <button class="chip-btn" onclick="goTo(6)"><span class="chip-no">06</span>設計啟示</button>
+      <button class="chip-btn" onclick="goTo(7)"><span class="chip-no">07</span>參考資料</button>
     </div>
   </div>
   </section>
@@ -314,7 +317,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">問題是什麼：<em>上下文為什麼會爆</em></h2>
       <span class="pg-sec">SECTION ONE</span>
-      <span class="pg-no">01 / 06</span>
+      <span class="pg-no">01 / 07</span>
     </div>
 
     <div style="display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:36px">
@@ -389,7 +392,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">決策邏輯：<em>三個判斷點</em></h2>
       <span class="pg-sec">SECTION TWO</span>
-      <span class="pg-no">02 / 06</span>
+      <span class="pg-no">02 / 07</span>
     </div>
 
     <div class="prose" style="max-width:none;margin-bottom:32px">
@@ -487,7 +490,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">規則一：<em>什麼絕對不能被摘要掉</em></h2>
       <span class="pg-sec">SECTION THREE</span>
-      <span class="pg-no">03 / 06</span>
+      <span class="pg-no">03 / 07</span>
     </div>
 
     <div style="display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:36px">
@@ -531,7 +534,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">規則二：<em>子代理只回結論不夠</em></h2>
       <span class="pg-sec">SECTION FOUR</span>
-      <span class="pg-no">04 / 06</span>
+      <span class="pg-no">04 / 07</span>
     </div>
 
     <div style="display:grid;grid-template-columns:200px 1fr;gap:48px;margin-bottom:36px">
@@ -572,7 +575,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">設計關鍵：<em>怎麼讓它真的被動</em></h2>
       <span class="pg-sec">SECTION FIVE</span>
-      <span class="pg-no">05 / 06</span>
+      <span class="pg-no">05 / 07</span>
     </div>
 
     <div class="prose" style="max-width:none">
@@ -650,7 +653,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <div class="pg-hdr">
       <h2 class="pg-title">設計啟示：<em>能搬到哪些場景</em></h2>
       <span class="pg-sec">SECTION SIX</span>
-      <span class="pg-no">06 / 06</span>
+      <span class="pg-no">06 / 07</span>
     </div>
 
     <div class="prose" style="max-width:none;margin-bottom:32px">
@@ -708,9 +711,23 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     </div>
 
     <p class="foot-note">應用場景：Zotero 文獻庫查詢、Google Drive 文件處理、Stata 分析紀錄、訪談逐字稿流程、RAG 知識庫檢索，任何工具輸出量大、任務會跑很多輪的 Agent 工作，都適用同一套判斷邏輯。</p>
+  </div>
+  </section>
 
-    <div class="ref-list">
-      <p class="label">參考資料</p>
+  <!-- SLIDE 7 · 參考資料 -->
+  <section class="slide" data-idx="7">
+  <div class="inner">
+    <div class="pg-hdr">
+      <h2 class="pg-title">參考資料：<em>往下追的原始出處</em></h2>
+      <span class="pg-sec">SECTION SEVEN</span>
+      <span class="pg-no">07 / 07</span>
+    </div>
+
+    <div class="prose" style="max-width:none;margin-bottom:8px">
+      <p>四篇對應到 Context Guardian 各條規則的原始討論，想確認某條規則的出處，或想看更完整的原始脈絡，從這裡往下追。</p>
+    </div>
+
+    <div class="ref-list" style="margin-top:20px">
       <div class="ref-item">
         <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a><span class="ref-src">Anthropic Engineering</span>
         <p>壓縮、卸載、子代理三種上下文管理策略的原始討論，Context Guardian 的規則骨架由此展開。</p>
