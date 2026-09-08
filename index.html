@@ -396,7 +396,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <p>規則本身不複雜，重點在把「要不要處理」拆成三個先後的判斷，每個判斷都有明確的是非分支，Agent 照著走就好，不用每次重新想一遍。</p>
     </div>
 
-    <div class="diagram-wrap" style="max-width:80%;margin-left:auto;margin-right:auto">
+    <div class="diagram-wrap" style="max-width:75%;margin-left:auto;margin-right:auto">
       <svg viewBox="0 0 560 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-flow-title cg-flow-desc">
         <title id="cg-flow-title">Context Guardian 決策邏輯：三個判斷點</title>
         <desc id="cg-flow-desc">流程圖顯示三個先後的判斷點：要不要卸載、要不要拆給子代理、要不要換 session，每個判斷否則走向輕量出口，是則往下進到下一個判斷，最後一個判斷的是則進到寫回設定檔並建議開新對話。</desc>
@@ -464,6 +464,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
         <div class="card-label">判斷一</div>
         <div class="card-title">要不要卸載</div>
         <p>工具即將回傳大量內容嗎？如果是，再問：這段內容需不需要逐字保留（引註原文、審稿意見、變數操作型定義）？需要就寫進暫存檔，對話裡只留路徑加三到五行摘要；不需要就直接摘成重點，原始輸出不進對話紀錄。</p>
+        <p class="op-line"><b>操作</b>：跟 Claude 說「這段工具回傳要先判斷需不需要逐字保留：審稿原文、變數定義、模型設定就寫進暫存檔只留路徑，其他直接摘重點，不要整份留在對話裡」。</p>
       </div>
       <div class="card" style="border-top-color:var(--accent2)">
         <div class="card-label">判斷二</div>
@@ -575,11 +576,11 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     </div>
 
     <div class="prose" style="max-width:none">
-      <p>Skill 本身是按需載入的機制：Claude 要先判斷眼前的任務符合 Skill 的描述，才會去讀規則本體。問題在於，單步驟、看起來簡單的操作，例如「讀這份逐字稿」，即使規則明明適用，也可能因為不覺得需要動用 Skill 而被跳過。</p>
-      <p>要讓它真正被動，得在專案根目錄的 <code>CLAUDE.md</code> 放一段提醒。這個檔案每次工作階段開頭都會強制載入，不像 Skill 要等觸發判斷。把判斷責任從「要不要觸發」改成「一律先檢查」，兩層設計缺一不可：<code>SKILL.md</code> 放完整規則，<code>CLAUDE.md</code> 放觸發保證。</p>
+      <p>要 Claude 每一步都自己判斷該不該套用規則，很難穩定做到：同一類操作，這次覺得該檢查，下次可能就略過。Skill 本身是按需載入的機制，Claude 要先判斷眼前的任務符合描述，才會去讀規則本體，單步驟、看起來簡單的操作，例如「讀這份逐字稿」，即使規則明明適用，也可能因為不覺得需要動用 Skill 而被跳過。</p>
+      <p>被動模型要處理的正是這個問題：不依賴 Claude 每次都判斷正確，而是在專案根目錄的 <code>CLAUDE.md</code> 放一段提醒。這個檔案每次工作階段開頭都會強制載入，不像 Skill 要等觸發判斷。把判斷責任從「要不要觸發」改成「一律先檢查」，兩層設計缺一不可：<code>SKILL.md</code> 放完整規則，<code>CLAUDE.md</code> 放觸發保證。</p>
     </div>
 
-    <div class="diagram-wrap" style="max-width:80%;margin-left:auto;margin-right:auto">
+    <div class="diagram-wrap" style="max-width:75%;margin-left:auto;margin-right:auto">
       <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-layer-title cg-layer-desc">
         <title id="cg-layer-title">Context Guardian 被動生效：兩層架構</title>
         <desc id="cg-layer-desc">疊層圖由上到下：CLAUDE.md 觸發保證每個工作階段開頭強制載入，中間是觸發判斷由 Claude 自行判斷任務符不符合，最下層是 SKILL.md 完整規則本體，左側方向指示標出載入順序先 CLAUDE.md 後 SKILL.md。</desc>
