@@ -198,6 +198,13 @@ body{
 
 .foot-note{font-size:var(--size-label);color:var(--ink3);margin-top:28px;line-height:1.8}
 
+.ref-list{margin-top:32px}
+.ref-item{margin-top:14px;padding-top:14px;border-top:1px dashed var(--b1)}
+.ref-item:first-of-type{border-top:none;padding-top:0}
+.ref-item a{color:var(--accent2);font-weight:500;font-size:var(--size-label)}
+.ref-item .ref-src{color:var(--ink3);font-size:var(--size-small);margin-left:6px}
+.ref-item p{font-size:var(--size-label);color:var(--ink3);margin-top:4px;line-height:1.7}
+
 .op-line{margin-top:10px;padding-top:10px;border-top:1px dashed var(--b1);font-size:var(--size-label);color:var(--ink3);line-height:1.75}
 .op-line b{color:var(--ink2);font-weight:500}
 
@@ -672,6 +679,26 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     </div>
 
     <p class="foot-note">應用場景：Zotero 文獻庫查詢、Google Drive 文件處理、Stata 分析紀錄、訪談逐字稿流程、RAG 知識庫檢索，任何工具輸出量大、任務會跑很多輪的 Agent 工作，都適用同一套判斷邏輯。</p>
+
+    <div class="ref-list">
+      <p class="label">參考資料</p>
+      <div class="ref-item">
+        <a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Effective context engineering for AI agents</a><span class="ref-src">Anthropic Engineering</span>
+        <p>壓縮、卸載、子代理三種上下文管理策略的原始討論，Context Guardian 的規則骨架由此展開。</p>
+      </div>
+      <div class="ref-item">
+        <a href="https://www.anthropic.com/engineering/multi-agent-research-system" target="_blank" rel="noopener">How we built our multi-agent research system</a><span class="ref-src">Anthropic Engineering</span>
+        <p>子代理要回傳可查核依據而非自由敘述結論的做法，對應規則二的三段式回報格式。</p>
+      </div>
+      <div class="ref-item">
+        <a href="https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents" target="_blank" rel="noopener">Effective harnesses for long-running agents</a><span class="ref-src">Anthropic Engineering</span>
+        <p>任務跨多個 context window 時如何保留進度，對應決策邏輯裡換 session 前先落地結論的判斷。</p>
+      </div>
+      <div class="ref-item">
+        <a href="https://code.claude.com/docs/en/context-window" target="_blank" rel="noopener">Explore the context window</a><span class="ref-src">Claude Code Docs</span>
+        <p>Claude Code 上下文視窗實際載入內容與 /compact 運作方式的互動說明。</p>
+      </div>
+    </div>
   </div>
   </section>
 
