@@ -221,6 +221,19 @@ body{
 .diagram-wrap{margin:8px 0 32px;overflow-x:auto;-webkit-overflow-scrolling:touch}
 .diagram-wrap svg{width:100%;min-width:480px;display:block}
 
+.hub-node{cursor:pointer}
+.hub-node rect{transition:fill .15s,stroke .15s}
+.hub-node:hover rect{stroke:var(--accent)}
+.hub-node.active rect{fill:rgba(200,68,26,0.08);stroke:var(--accent);stroke-width:1.4}
+.hub-detail{
+  background:var(--card);border:1px solid var(--b1);border-top:3px solid var(--accent);
+  border-radius:4px;padding:22px 24px;min-height:104px;
+}
+.hub-detail .card-label{margin-bottom:8px}
+.hub-detail .card-title{font-family:var(--serif);font-size:var(--size-h2);font-weight:600;margin-bottom:10px}
+.hub-detail .card-body{font-size:var(--size-label);color:var(--ink2);line-height:1.7}
+.hub-detail .hub-empty{font-size:var(--size-label);color:var(--ink3)}
+
 .label{font-size:var(--size-small);letter-spacing:.18em;color:var(--ink3)}
 .chip{
   display:inline-block;
@@ -316,49 +329,38 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
         <line x1="621" y1="140" x2="621" y2="160" stroke="#4A4540" stroke-width="1.2" marker-end="url(#cg-hub-arrow)"/>
         <rect x="245" y="32" width="200" height="56" rx="8" fill="rgba(200,68,26,0.08)" stroke="#C8441A" stroke-width="1.2"/>
         <text x="345" y="66" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)" text-anchor="middle">上下文即將爆滿</text>
-        <rect x="10" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <text x="69" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">大型工具</text>
-        <text x="69" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">輸出</text>
-        <rect x="148" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <text x="207" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">跨多輪</text>
-        <text x="207" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">任務</text>
-        <rect x="286" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <text x="345" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">數量超過</text>
-        <text x="345" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">門檻</text>
-        <rect x="424" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <text x="483" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">準備派工</text>
-        <text x="483" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">或彙整</text>
-        <rect x="562" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <text x="621" y="196" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">階段切換</text>
+        <g class="hub-node" data-type="A" onclick="showHub('A')">
+          <rect x="10" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+          <text x="69" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">大型工具</text>
+          <text x="69" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">輸出</text>
+        </g>
+        <g class="hub-node" data-type="B" onclick="showHub('B')">
+          <rect x="148" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+          <text x="207" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">跨多輪</text>
+          <text x="207" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">任務</text>
+        </g>
+        <g class="hub-node" data-type="C" onclick="showHub('C')">
+          <rect x="286" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+          <text x="345" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">數量超過</text>
+          <text x="345" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">門檻</text>
+        </g>
+        <g class="hub-node" data-type="D" onclick="showHub('D')">
+          <rect x="424" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+          <text x="483" y="188" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">準備派工</text>
+          <text x="483" y="204" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">或彙整</text>
+        </g>
+        <g class="hub-node" data-type="E" onclick="showHub('E')">
+          <rect x="562" y="160" width="118" height="64" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+          <text x="621" y="196" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">階段切換</text>
+        </g>
       </svg>
     </div>
 
-    <div class="card-grid">
-      <div class="card card-toggle" onclick="toggleCard(this)">
-        <div class="card-label">TYPE A</div>
-        <div class="card-title">大型工具輸出<span class="card-ind">＋</span></div>
-        <p class="card-body">工具即將回傳大量內容：Zotero 全文檢索、Drive 文件下載、Stata log、逐字稿讀取，或多次疊加的搜尋結果。</p>
-      </div>
-      <div class="card card-toggle" style="border-top-color:var(--accent2)" onclick="toggleCard(this)">
-        <div class="card-label">TYPE B</div>
-        <div class="card-title">跨多輪的任務<span class="card-ind">＋</span></div>
-        <p class="card-body">任務預期會跨多個工作輪次，例如多階段的分析流程，或跨論文的設定檔建置。</p>
-      </div>
-      <div class="card card-toggle" style="border-top-color:var(--accent3)" onclick="toggleCard(this)">
-        <div class="card-label">TYPE C</div>
-        <div class="card-title">數量超過門檻<span class="card-ind">＋</span></div>
-        <p class="card-body">處理中的檔案或文獻超過三份，或單一工具一次回傳超過五百行。</p>
-      </div>
-      <div class="card card-toggle" onclick="toggleCard(this)">
-        <div class="card-label">TYPE D</div>
-        <div class="card-title">準備派工或彙整<span class="card-ind">＋</span></div>
-        <p class="card-body">準備把任務分給子代理處理，或正在收攏多個子代理回傳的結果。</p>
-      </div>
-      <div class="card card-toggle" style="border-top-color:var(--accent2)" onclick="toggleCard(this)">
-        <div class="card-label">TYPE E</div>
-        <div class="card-title">階段切換<span class="card-ind">＋</span></div>
-        <p class="card-body">一個邏輯階段已經跑完，準備進到下一個獨立階段，例如一篇論文的文獻分析結束。</p>
-      </div>
+    <div class="hub-detail" id="hub-detail">
+      <p class="hub-empty" id="hub-empty">點選上方任一節點，查看觸發情境的說明。</p>
+      <div class="card-label" id="hub-label" style="display:none"></div>
+      <div class="card-title" id="hub-title2" style="display:none"></div>
+      <p class="card-body" id="hub-body" style="display:none"></p>
     </div>
   </div>
   </section>
@@ -683,6 +685,28 @@ function toggleCard(el){
   el.classList.toggle('open');
   var ind = el.querySelector('.card-ind');
   if(ind){ ind.textContent = el.classList.contains('open') ? '－' : '＋'; }
+}
+
+var HUB_DATA = {
+  A: {label:'TYPE A', title:'大型工具輸出', body:'工具即將回傳大量內容：Zotero 全文檢索、Drive 文件下載、Stata log、逐字稿讀取，或多次疊加的搜尋結果。'},
+  B: {label:'TYPE B', title:'跨多輪的任務', body:'任務預期會跨多個工作輪次，例如多階段的分析流程，或跨論文的設定檔建置。'},
+  C: {label:'TYPE C', title:'數量超過門檻', body:'處理中的檔案或文獻超過三份，或單一工具一次回傳超過五百行。'},
+  D: {label:'TYPE D', title:'準備派工或彙整', body:'準備把任務分給子代理處理，或正在收攏多個子代理回傳的結果。'},
+  E: {label:'TYPE E', title:'階段切換', body:'一個邏輯階段已經跑完，準備進到下一個獨立階段，例如一篇論文的文獻分析結束。'}
+};
+
+function showHub(type){
+  var d = HUB_DATA[type];
+  document.getElementById('hub-empty').style.display = 'none';
+  var label = document.getElementById('hub-label');
+  var title = document.getElementById('hub-title2');
+  var body  = document.getElementById('hub-body');
+  label.textContent = d.label; label.style.display = 'block';
+  title.textContent = d.title; title.style.display = 'block';
+  body.textContent  = d.body;  body.style.display  = 'block';
+  document.querySelectorAll('.hub-node').forEach(function(n){
+    n.classList.toggle('active', n.dataset.type === type);
+  });
 }
 
 function goTo(n){
