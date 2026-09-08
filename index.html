@@ -378,7 +378,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <p>規則本身不複雜，重點在把「要不要處理」拆成三個先後的判斷，每個判斷都有明確的是非分支，Agent 照著走就好，不用每次重新想一遍。</p>
     </div>
 
-    <div class="diagram-wrap">
+    <div class="diagram-wrap" style="max-width:80%;margin-left:auto;margin-right:auto">
       <svg viewBox="0 0 560 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-flow-title cg-flow-desc">
         <title id="cg-flow-title">Context Guardian 決策邏輯：三個判斷點</title>
         <desc id="cg-flow-desc">流程圖顯示三個先後的判斷點：要不要卸載、要不要拆給子代理、要不要換 session，每個判斷否則走向輕量出口，是則往下進到下一個判斷，最後一個判斷的是則進到寫回設定檔並建議開新對話。</desc>
@@ -522,7 +522,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
         <p style="font-size:var(--size-label);color:var(--ink3);margin-top:4px">結論・依據・待驗證<br>三段式，缺一不可</p>
       </div>
       <div class="prose">
-        <p>子代理如果只回傳一段自由敘述的結論，主線沒有辦法核實，彙整的時候也容易把子代理原本標記為不確定的地方，講成確定的結果。固定格式因此有三段：結論用一到兩句話講清楚，支持依據要寫來源檔案加行號或頁碼，不能是敘述性的說明，最後列出有沒有無法確認來源的待驗證項目。</p>
+        <p>子代理只回傳自由敘述的結論，主線沒辦法核實，彙整時容易把子代理原本標記不確定的地方，講成確定結果。固定格式分結論、依據、待驗證三段：結論講清楚，依據要附來源檔案與行號或頁碼，不能用敘述性說明；待驗證列出無法確認來源的項目。</p>
         <p>主線收到回報後，只把結論摘要進主對話，支持依據留在檔案裡備查，需要的時候再回頭核對。同樣的邏輯也用在思考預算的分配上：例行、格式化、確定性高的步驟用低思考預算，理論架構比對、審稿意見的實質回應這類真正需要判斷的步驟，才用高思考預算。</p>
       </div>
     </div>
@@ -561,7 +561,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <p>要讓它真正被動，得在專案根目錄的 <code>CLAUDE.md</code> 放一段提醒。這個檔案每次工作階段開頭都會強制載入，不像 Skill 要等觸發判斷。把判斷責任從「要不要觸發」改成「一律先檢查」，兩層設計缺一不可：<code>SKILL.md</code> 放完整規則，<code>CLAUDE.md</code> 放觸發保證。</p>
     </div>
 
-    <div class="diagram-wrap">
+    <div class="diagram-wrap" style="max-width:80%;margin-left:auto;margin-right:auto">
       <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-layer-title cg-layer-desc">
         <title id="cg-layer-title">Context Guardian 被動生效：兩層架構</title>
         <desc id="cg-layer-desc">疊層圖由上到下：CLAUDE.md 觸發保證每個工作階段開頭強制載入，中間是觸發判斷由 Claude 自行判斷任務符不符合，最下層是 SKILL.md 完整規則本體，左側方向指示標出載入順序先 CLAUDE.md 後 SKILL.md。</desc>
