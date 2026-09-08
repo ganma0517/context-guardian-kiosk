@@ -231,7 +231,7 @@ body{
 }
 .hub-detail .card-label{margin-bottom:8px}
 .hub-detail .card-title{font-family:var(--serif);font-size:var(--size-h2);font-weight:600;margin-bottom:10px}
-.hub-detail .card-body{font-size:var(--size-label);color:var(--ink2);line-height:1.7}
+.hub-detail .card-body{font-size:var(--size-body);color:var(--ink2);line-height:1.85}
 .hub-detail .hub-empty{font-size:var(--size-label);color:var(--ink3)}
 
 .label{font-size:var(--size-small);letter-spacing:.18em;color:var(--ink3)}
@@ -688,11 +688,11 @@ function toggleCard(el){
 }
 
 var HUB_DATA = {
-  A: {label:'TYPE A', title:'大型工具輸出', body:'Claude 呼叫的工具即將回傳一大份內容，例如查一篇文獻的全文、下載一份雲端文件、讀一份訪談逐字稿。這些內容不會先摘要，而是整份塞進對話紀錄，等於把一整本書搬進對話框，視窗很快就會被佔滿。'},
-  B: {label:'TYPE B', title:'跨多輪的任務', body:'任務不是一次做完，而是要分好幾輪慢慢推進，例如連續好幾天的分析工作，或是替好幾篇論文建立共用的設定。每一輪的討論內容都會往下疊加，越到後面對話紀錄越長，早期講過的細節也越容易被擠掉。'},
-  C: {label:'TYPE C', title:'數量超過門檻', body:'手上同時處理的檔案或文獻超過三份，或是單一次查詢結果就超過五百行。份數一多，這些原始內容佔掉的空間，會比真正用來思考、判斷的內容還多。'},
-  D: {label:'TYPE D', title:'準備派工或彙整', body:'準備把工作拆給其他子任務（子代理）分頭處理，或是子任務做完後要把各自的結果收回來合併。每個子任務回報的內容都要放進主對話，一次收好幾份，對話紀錄會瞬間變厚。'},
-  E: {label:'TYPE E', title:'階段切換', body:'一個階段的工作已經做完，準備進到下一個獨立階段，例如一篇論文的文獻整理告一段落，要開始寫作。這個階段用不到的細節，如果沒有先清掉，會一路帶到下一階段，越滾越大。'}
+  A: {label:'TYPE A', title:'大型工具輸出', body:'工具就要回傳大量內容：查文獻全文、下載雲端文件、讀訪談逐字稿。內容不先摘要，直接塞進對話紀錄，像把整本書搬進對話框，視窗很快塞滿。'},
+  B: {label:'TYPE B', title:'跨多輪的任務', body:'任務不會一次做完，要分輪慢慢推進：連續幾天的分析工作，或替多篇論文建立共用設定。討論內容持續疊加，對話紀錄越拉越長，早期細節容易埋進後面堆的內容裡。'},
+  C: {label:'TYPE C', title:'數量超過門檻', body:'同時處理的檔案或文獻超過三份，或單次查詢結果超過五百行。原始內容占掉的空間，比真正用來思考判斷的內容還多。'},
+  D: {label:'TYPE D', title:'準備派工或彙整', body:'準備把工作拆給子代理分頭處理，或子代理做完後要收回結果合併。子代理回報的內容都要放進主對話，同時收進多份結果，對話紀錄瞬間變厚。'},
+  E: {label:'TYPE E', title:'階段切換', body:'階段工作做完，準備進到下一階段，例如論文文獻整理告一段落，要開始寫作。用不到的細節沒有先清掉，會一路帶到下一階段，越滾越大。'}
 };
 
 function showHub(type){
