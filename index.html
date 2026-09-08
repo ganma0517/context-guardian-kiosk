@@ -396,7 +396,7 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <p>規則本身不複雜，重點在把「要不要處理」拆成三個先後的判斷，每個判斷都有明確的是非分支，Agent 照著走就好，不用每次重新想一遍。</p>
     </div>
 
-    <div class="diagram-wrap" style="max-width:75%;margin-left:auto;margin-right:auto">
+    <div class="diagram-wrap" style="max-width:56.25%;margin-left:auto;margin-right:auto">
       <svg viewBox="0 0 560 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-flow-title cg-flow-desc">
         <title id="cg-flow-title">Context Guardian 決策邏輯：三個判斷點</title>
         <desc id="cg-flow-desc">流程圖顯示三個先後的判斷點：要不要卸載、要不要拆給子代理、要不要換 session，每個判斷否則走向輕量出口，是則往下進到下一個判斷，最後一個判斷的是則進到寫回設定檔並建議開新對話。</desc>
@@ -580,35 +580,52 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
       <p>被動模型要處理的正是這個問題：不依賴 Claude 每次都判斷正確，而是在專案根目錄的 <code>CLAUDE.md</code> 放一段提醒。這個檔案每次工作階段開頭都會強制載入，不像 Skill 要等觸發判斷。把判斷責任從「要不要觸發」改成「一律先檢查」，兩層設計缺一不可：<code>SKILL.md</code> 放完整規則，<code>CLAUDE.md</code> 放觸發保證。</p>
     </div>
 
-    <div class="diagram-wrap" style="max-width:75%;margin-left:auto;margin-right:auto">
-      <svg viewBox="0 0 680 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-layer-title cg-layer-desc">
-        <title id="cg-layer-title">Context Guardian 被動生效：兩層架構</title>
-        <desc id="cg-layer-desc">疊層圖由上到下：CLAUDE.md 觸發保證每個工作階段開頭強制載入，中間是觸發判斷由 Claude 自行判斷任務符不符合，最下層是 SKILL.md 完整規則本體，左側方向指示標出載入順序先 CLAUDE.md 後 SKILL.md。</desc>
+    <div class="diagram-wrap" style="max-width:60%;margin-left:auto;margin-right:auto">
+      <svg viewBox="0 0 560 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="cg-pflow-title cg-pflow-desc">
+        <title id="cg-pflow-title">Context Guardian 被動生效：CLAUDE.md 與 SKILL.md 的流程</title>
+        <desc id="cg-pflow-desc">流程圖：CLAUDE.md 觸發保證每個工作階段開頭強制載入，接著進入觸發判斷，Claude 自行判斷任務符不符合，是則讀取 SKILL.md 完整規則本體，規則生效；否則規則被跳過，這正是只靠 SKILL.md 會出現的落差，需要 CLAUDE.md 補上保證。</desc>
         <defs>
-          <marker id="cg-layer-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#8A8078"/></marker>
+          <marker id="cg-pflow-arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4A4540"/></marker>
+          <marker id="cg-pflow-arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#C8441A"/></marker>
         </defs>
         <rect width="100%" height="100%" fill="#F3EDE2"/>
-        <line x1="70" y1="40" x2="70" y2="248" stroke="#8A8078" stroke-width="1" marker-end="url(#cg-layer-arrow)"/>
-        <text x="70" y="28" fill="#8A8078" font-size="9" font-family="var(--mono)" text-anchor="middle" letter-spacing=".06em">先</text>
-        <text x="70" y="268" fill="#8A8078" font-size="9" font-family="var(--mono)" text-anchor="middle" letter-spacing=".06em">後</text>
-        <rect x="150" y="28" width="460" height="84" rx="6" fill="rgba(200,68,26,0.08)" stroke="#C8441A" stroke-width="1.2"/>
-        <rect x="166" y="40" width="72" height="16" rx="2" fill="transparent" stroke="rgba(200,68,26,0.5)" stroke-width="0.8"/>
-        <text x="202" y="52" fill="#C8441A" font-size="8" font-family="var(--mono)" text-anchor="middle" letter-spacing=".04em">CLAUDE.md</text>
-        <text x="166" y="78" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)">觸發保證</text>
-        <text x="166" y="96" fill="#4A4540" font-size="10" font-family="var(--sans)">每個工作階段開頭強制載入</text>
-        <rect x="150" y="128" width="460" height="84" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <rect x="166" y="140" width="40" height="16" rx="2" fill="transparent" stroke="rgba(26,26,26,0.30)" stroke-width="0.8"/>
-        <text x="186" y="152" fill="#4A4540" font-size="8" font-family="var(--mono)" text-anchor="middle" letter-spacing=".04em">判斷</text>
-        <text x="166" y="178" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)">觸發判斷</text>
-        <text x="166" y="196" fill="#4A4540" font-size="10" font-family="var(--sans)">Claude 自行判斷任務符不符合</text>
-        <rect x="150" y="228" width="460" height="84" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
-        <rect x="166" y="240" width="64" height="16" rx="2" fill="transparent" stroke="rgba(26,26,26,0.30)" stroke-width="0.8"/>
-        <text x="198" y="252" fill="#4A4540" font-size="8" font-family="var(--mono)" text-anchor="middle" letter-spacing=".04em">SKILL.md</text>
-        <text x="166" y="278" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)">完整規則本體</text>
-        <text x="166" y="296" fill="#4A4540" font-size="10" font-family="var(--sans)">不可壓縮清單／卸載／子代理／範圍過濾</text>
-        <line x1="150" y1="332" x2="610" y2="332" stroke="rgba(26,26,26,0.10)" stroke-width="0.8"/>
-        <rect x="150" y="348" width="14" height="14" rx="3" fill="rgba(200,68,26,0.08)" stroke="#C8441A" stroke-width="1"/>
-        <text x="172" y="359" fill="#4A4540" font-size="10" font-family="var(--sans)">關鍵層：少了它，規則容易被跳過</text>
+
+        <line x1="280" y1="108" x2="280" y2="140" stroke="#C8441A" stroke-width="1.4" marker-end="url(#cg-pflow-arrow-accent)"/>
+        <line x1="350" y1="178" x2="400" y2="178" stroke="#4A4540" stroke-width="1.2" marker-end="url(#cg-pflow-arrow)"/>
+        <line x1="280" y1="216" x2="280" y2="258" stroke="#C8441A" stroke-width="1.4" marker-end="url(#cg-pflow-arrow-accent)"/>
+
+        <rect x="170" y="24" width="220" height="84" rx="8" fill="rgba(200,68,26,0.08)" stroke="#C8441A" stroke-width="1.2"/>
+        <rect x="186" y="36" width="72" height="16" rx="2" fill="transparent" stroke="rgba(200,68,26,0.5)" stroke-width="0.8"/>
+        <text x="222" y="48" fill="#C8441A" font-size="8" font-family="var(--mono)" text-anchor="middle" letter-spacing=".04em">CLAUDE.md</text>
+        <text x="186" y="74" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)">觸發保證</text>
+        <text x="186" y="92" fill="#4A4540" font-size="10" font-family="var(--sans)">每個工作階段開頭強制載入</text>
+
+        <polygon points="280,140 350,178 280,216 210,178" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+        <text x="280" y="174" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">觸發判斷</text>
+        <text x="280" y="190" fill="#1A1A1A" font-size="12" font-weight="600" font-family="var(--sans)" text-anchor="middle">符不符合？</text>
+
+        <rect x="360" y="150" width="20" height="16" rx="2" fill="#F3EDE2"/>
+        <text x="370" y="162" fill="#4A4540" font-size="11" font-weight="500" font-family="var(--sans)" text-anchor="middle">否</text>
+        <rect x="400" y="140" width="150" height="76" rx="6" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+        <text x="416" y="172" fill="#1A1A1A" font-size="13" font-weight="600" font-family="var(--sans)">規則被跳過</text>
+        <text x="416" y="190" fill="#4A4540" font-size="10" font-family="var(--sans)">被動設計要補的落差</text>
+
+        <rect x="270" y="228" width="20" height="16" rx="2" fill="#F3EDE2"/>
+        <text x="280" y="240" fill="#C8441A" font-size="11" font-weight="500" font-family="var(--sans)" text-anchor="middle">是</text>
+
+        <rect x="170" y="258" width="220" height="84" rx="8" fill="#FAF6EF" stroke="#1A1A1A" stroke-width="1"/>
+        <rect x="186" y="270" width="64" height="16" rx="2" fill="transparent" stroke="rgba(26,26,26,0.30)" stroke-width="0.8"/>
+        <text x="218" y="282" fill="#4A4540" font-size="8" font-family="var(--mono)" text-anchor="middle" letter-spacing=".04em">SKILL.md</text>
+        <text x="186" y="308" fill="#1A1A1A" font-size="14" font-weight="600" font-family="var(--sans)">完整規則本體</text>
+        <text x="186" y="326" fill="#4A4540" font-size="10" font-family="var(--sans)">不可壓縮清單／卸載／子代理／範圍過濾</text>
+
+        <line x1="170" y1="368" x2="550" y2="368" stroke="rgba(26,26,26,0.10)" stroke-width="0.8"/>
+        <text x="170" y="396" fill="#4A4540" font-size="11" font-weight="500" font-family="var(--sans)">是</text>
+        <text x="194" y="396" fill="#8A8078" font-size="10" font-family="var(--sans)">往下：讀取 SKILL.md，規則生效</text>
+        <text x="390" y="396" fill="#4A4540" font-size="11" font-weight="500" font-family="var(--sans)">否</text>
+        <text x="414" y="396" fill="#8A8078" font-size="10" font-family="var(--sans)">向右：規則被跳過</text>
+        <line x1="170" y1="414" x2="198" y2="414" stroke="#C8441A" stroke-width="1.4" marker-end="url(#cg-pflow-arrow-accent)"/>
+        <text x="206" y="418" fill="#8A8078" font-size="10" font-family="var(--sans)">最需要記得的一步：沒有 CLAUDE.md 的保證，這個判斷可能被跳過</text>
       </svg>
     </div>
 
