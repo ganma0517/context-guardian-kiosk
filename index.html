@@ -198,6 +198,11 @@ body{
 
 .foot-note{font-size:var(--size-label);color:var(--ink3);margin-top:28px;line-height:1.8}
 
+.title-qr{display:flex;align-items:center;gap:16px;margin-top:22px}
+.title-qr img{width:88px;height:88px;border:1px solid var(--b1);border-radius:6px;background:#fff;padding:6px}
+.title-qr .tq-tx{font-size:var(--size-label);color:var(--ink3);line-height:1.6}
+.title-qr .tq-tx b{color:var(--accent);font-family:var(--mono);font-weight:500}
+
 .ref-list{margin-top:32px}
 .ref-item{margin-top:14px;padding-top:14px;border-top:1px dashed var(--b1)}
 .ref-item:first-of-type{border-top:none;padding-top:0}
@@ -284,6 +289,12 @@ code{font-family:var(--mono);font-size:.9em;background:var(--b2);padding:1px 5px
     <h1 class="hero-h1">讓 Agent 自己<br>看住<em>上下文的邊界</em></h1>
     <p class="byline">林文正　中央研究院社會學研究所　博士後研究員｜Agent 系統設計筆記</p>
     <p class="hero-sub">Context Guardian 是一套給 Claude Code 用的被動式上下文管理規則。任務跑得長、工具一次回傳一大包內容時，讓 Agent 自己判斷該壓縮、卸載，還是拆給子代理處理，不需要使用者盯著用量、手動喊停。</p>
+
+    <div class="title-qr">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAADIAQMAAACXljzdAAAABlBMVEX///8AAABVwtN+AAAACXBIWXMAAA7EAAAOxAGVKw4bAAABkElEQVRYhdWXMXKFMAxExbig5AgchZvF/JtxFB+BksKDsisZyCTpLVwwmOdCNquVLBJ4JOUogsc26L586mRftghkR4BTyemQZSCtU8GXOQZZ1CZjWWREuJhkPd5BMv+8Yk+feERMCyCrvIO4QnjO56jbl/zWTkfimQX1zts5/pNzIck9Rip4l1z/mFY3kiyZVOkHqrvAr+a1clloggm2YIIlyTzoSzudiUx6JmRVpU8dE5fO6ocdmCSmGQaPl+rVKvdf6E2EgSKzKFpEravYi8QmyQSLVIODQSFU8PxopzvJLFPuWXBZWu4VdWBiNsDzFqsNWLKK+0FvIvz1NHwEOiCzhvooJC6x8NvEco4jHV5pexOUULyvpgGkGd2fpUDCE9YF7AtdgFE2MiUGYZmyNk/tXmJn3e4lYUkb2UpB612wNAS5er5bB977e2bFJd5ft25Q1eRiW4xA/DZlFmX35x9+EJ54A0h1sGZpkUAEgap1KOz5XkCk3QH9xo8u4On9e5Mrs1hP1e6n2tw/MAk8vgGvSWMqbYZrVgAAAABJRU5ErkJggg==" alt="QR：Context Guardian 頁面連結">
+      <div class="tq-tx">📱 掃 QR Code 開啟本頁<br><b>ganma0517.github.io/context-guardian-kiosk</b></div>
+    </div>
+
     <hr class="divider">
     <p class="label" style="margin-bottom:16px">PICK A SECTION</p>
     <div class="chip-row">
